@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LinguaLevel</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <main class="card">
+      <h1>LinguaLevel</h1>
+      <p>
+        Upload learning material and choose a CEFR level. The app simplifies the
+        language and returns the file in the same format, along with a vocabulary
+        list of replaced complex terms.
+      </p>
+
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <ul class="errors">
+        {% for msg in messages %}
+        <li>{{ msg }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %} {% endwith %}
+
+      <form method="post" enctype="multipart/form-data">
+        <label for="level">Student CEFR level</label>
+        <select id="level" name="level" required>
+          <option value="">Select level...</option>
+          <option value="A1">A1</option>
+          <option value="A2">A2</option>
+          <option value="B1">B1</option>
+          <option value="B2">B2</option>
+          <option value="C1">C1</option>
+          <option value="C2">C2</option>
+        </select>
+
+        <label for="material">Learning material</label>
+        <input
+          id="material"
+          name="material"
+          type="file"
+          accept=".txt,.pdf,.docx,.pptx"
+          required
+        />
+
+        <button type="submit">Simplify Material</button>
+      </form>
+    </main>
+  </body>
+</html>
